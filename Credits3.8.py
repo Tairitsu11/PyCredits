@@ -40,6 +40,7 @@ class Credits_BGA:
         sys.stdout.write('\033[H')
         sys.stdout.write(text)
         time.sleep(wait_time)
+        os.system('cls')
 
 
     def _1(self):
@@ -345,179 +346,182 @@ class Credits_BGA:
         self.output(f'Credits{self.backslash_enter*13}{(self.smile+" Broadcast").ljust(21)}  Frums', self.half_beat_time)
 
     def _5(self):
-        def _(shine: int, wait_time: float, type: bool, blocks: list, text: str):  # 修改 blocks 类型为 list
+        def _(shine: int, wait_time: float, frame_type: bool, blocks: list, text: str):
+
+            blocks += [''] * (3 - len(blocks))
+            
+
             s = self.light if shine == 0 else (self.median if shine == 1 else self.dark)
-            if type == 0:
-                self.output(
-                    f'''Credits\n\n
-       {s*2} {chr(0xc9)}{chr(0xcd)*4}{chr(0xbb)}       {self.eighth_note*2}   {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[0]}{chr(0xba)}      {self.eighth_note*4}   {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[0]}{chr(0xba)}       {self.eighth_note*2}    {s*2}\n
-     {s*2}   {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.eighth_note*4}    {s*2}\n
-     {s*2}   {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.eighth_note*6}   {s*2}\n
-     {s*2}   {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.eighth_note*6}   {s*2}\n
-     {s*2}   {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}     {self.eighth_note*6}   {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[2]}{chr(0xba)}      {self.eighth_note*4}   {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[2]}{chr(0xba)}      {self.eighth_note*4}   {s*2}\n
-       {s*2} {chr(0xc8)}{chr(0xcd)*4}{chr(0xbc)}     {self.eighth_note*2}  {self.eighth_note*2} {s*2}\n\n
-    {chr(0xaf)} {text}Frums''',
-                    wait_time
-                )
-            elif type == 1:
-                self.output(
-                    f'''Credits\n\n
-       {s*2} {chr(0xc9)}{chr(0xcd)*4}{chr(0xbb)}      {self.sixteenth_note*2}    {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[0]}{chr(0xba)}     {self.sixteenth_note*4}    {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[0]}{chr(0xba)}      {self.sixteenth_note*2}     {s*2}\n
-     {s*2}   {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.sixteenth_note*4}    {s*2}\n
-     {s*2}   {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.sixteenth_note*6}   {s*2}\n
-     {s*2}   {chr(0xba)}{4*blocks[1]}{chr(0xba)}   {self.sixteenth_note*2} {self.sixteenth_note*4} {self.sixteenth_note}  {s*2}\n
-     {s*2}   {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.sixteenth_note*4}    {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[2]}{chr(0xba)}     {self.sixteenth_note*2} {self.sixteenth_note*2}   {s*2}\n
-      {s*2}  {chr(0xba)}{4*blocks[2]}{chr(0xba)}    {self.sixteenth_note*2}  {self.sixteenth_note*2}   {s*2}\n
-       {s*2} {chr(0xc8)}{chr(0xcd)*4}{chr(0xbc)}    {self.sixteenth_note*2}   {self.sixteenth_note*2} {s*2}\n\n
-    {chr(0xaf)} {text}Frums''',
-                    wait_time
-                )
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Cor'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xf7)}, 'Corporation'.ljust(21))
+            
 
-        _(2, self.quarter_beat_time, 0, '.',{chr(0xf1)},'.', 'Cor'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xf7)}, 'Corporation'.ljust(21))
+            if frame_type == 0:
+                content = f"""
+    Credits\n\n
+       {s*2}{chr(0xc9)}{chr(0xcd)*4}{chr(0xbb)}       {self.eighth_note*2}   {s*2}
+      {s*2} {chr(0xba)}{4*blocks[0]}{chr(0xba)}      {self.eighth_note*4}   {s*2}
+      {s*2} {chr(0xba)}{4*blocks[0]}{chr(0xba)}       {self.eighth_note*2}    {s*2}
+     {s*2}  {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.eighth_note*4}    {s*2}
+     {s*2}  {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.eighth_note*6}   {s*2}
+     {s*2}  {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.eighth_note*6}   {s*2}
+     {s*2}  {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}     {self.eighth_note*6}   {s*2}
+      {s*2} {chr(0xba)}{4*blocks[2]}{chr(0xba)}      {self.eighth_note*4}   {s*2}
+      {s*2} {chr(0xba)}{4*blocks[2]}{chr(0xba)}      {self.eighth_note*4}   {s*2}
+       {s*2}{chr(0xc8)}{chr(0xcd)*4}{chr(0xbc)}     {self.eighth_note*2}  {self.eighth_note*2} {s*2}
+    \n{chr(0xaf)} {text}Frums"""
+        
+            else:
+               content = f"""
+    Credits\n\n
+       {s*2}{chr(0xc9)}{chr(0xcd)*4}{chr(0xbb)}      {self.sixteenth_note*2}    {s*2}
+      {s*2} {chr(0xba)}{4*blocks[0]}{chr(0xba)}     {self.sixteenth_note*4}    {s*2}
+      {s*2} {chr(0xba)}{4*blocks[0]}{chr(0xba)}      {self.sixteenth_note*2}     {s*2}
+     {s*2}  {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.sixteenth_note*4}    {s*2}
+     {s*2}  {chr(0xba)}{4*blocks[1]}{chr(0xba)}     {self.sixteenth_note*6}   {s*2}
+     {s*2}  {chr(0xba)}{4*blocks[1]}{chr(0xba)}   {self.sixteenth_note*2}{self.sixteenth_note*4}{self.sixteenth_note}  {s*2}
+     {s*2}  {chr(0xc7)}{chr(0xc4)*4}{chr(0xb6)}      {self.sixteenth_note*4}    {s*2}
+      {s*2} {chr(0xba)}{4*blocks[2]}{chr(0xba)}     {self.sixteenth_note*2}{self.sixteenth_note*2}   {s*2}
+      {s*2} {chr(0xba)}{4*blocks[2]}{chr(0xba)}    {self.sixteenth_note*2} {self.sixteenth_note*2}   {s*2}
+       {s*2}{chr(0xc8)}{chr(0xcd)*4}{chr(0xbc)}    {self.sixteenth_note*2}   {self.sixteenth_note*2} {s*2}
+    \n{chr(0xaf)} {text}Frums"""
+        
+            self.output(content, wait_time)
 
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Cor'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 1, {chr(0xf7)}, 'Corporation'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(2, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corporation'.ljust(21))
 
-        _(2, self.quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-        _(2, self.quarter_beat_time, 1, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 1, {chr(0xea)}, 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, {chr(0xea)}, 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor (x2)'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Cor (x2)'.ljust(21))
-        _(2, self.half_quarter_beat_time, 1, {chr(0xea)}, 'Cor (x3)'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Cor (x3)'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corporation'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corporation'.ljust(21))
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Corporation'.ljust(21))
-        _(2, self.quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '..',{chr(0xf7)}, 'Corporation'.ljust(21))
-        _(2, self.quarter_beat_time, 1, '.',{chr(0xea)},'.', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '..',{chr(0xf7)}, 'Corpo (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 1, {chr(0xea)}, 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 1, {chr(0xea)}, 'Corpo (x2)'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Corpo'.ljust(21))
 
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)},'  ..', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Cor (x3)'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
-        _(2, self.half_beat_time, 0, {chr(0xea)}, 'Cor (x3)'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 1, '.',{chr(0xf7)},'.', 'Cor!'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '..',{chr(0xf7)}, 'Corpor!'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, {chr(0xea)}, 'Corpora!'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Corpora!'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, {chr(0xea)}, 'Corporation!'.ljust(21))
-        _(0, self.half_quarter_beat_time, 1, '...', 'Corporation!'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '...', 'Cor!'.ljust(21))
-        _(0, self.quarter_beat_time, 1, '..',{chr(0xf7)}, 'Cor! (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 0, {chr(0xea)}, 'Cor'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.half_quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Cor (x3)'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))   
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
-        _(2, self.quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Cor (x3)'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Corpora'.ljust(21))
-        _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corporation'.ljust(21))
-        _(0, self.quarter_beat_time, 0, '...', 'Cor'.ljust(21))   
-        _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Cor (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 0, ['.', chr(0xf1), '.'], 'Cor'.ljust(21))
+        _(2, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corporation'.ljust(21))
+
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(2, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xf7)], 'Corporation'.ljust(21))
+
+        _(2, self.quarter_beat_time, 1, ['.', chr(0xf1), '.'], 'Cor'.ljust(21))
+        _(2, self.quarter_beat_time, 1, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xea)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', chr(0xf1), '.'], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', chr(0xf1), '.'], 'Cor (x2)'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Cor (x2)'.ljust(21))
+
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(2, self.half_quarter_beat_time, 1, [chr(0xea)], 'Cor (x3)'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Cor (x3)'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corporation'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xf1)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corporation'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(2, self.quarter_beat_time, 1, [chr(0xf1)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xf7)], 'Corporation'.ljust(21))
+        _(2, self.quarter_beat_time, 1, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xf7)], 'Corpo (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 1, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xea)], 'Corpo (x2)'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xf1)], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xf1)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Corpo'.ljust(21))
+
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Cor (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xf1)], 'Cor (x3)'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Cor (x2)'.ljust(21))
+        _(2, self.half_beat_time, 0, [chr(0xea)], 'Cor (x3)'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xf7)], 'Cor (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 1, [chr(0xf1)], 'Cor!'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xf7)], 'Corpor!'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xea)], 'Corpora!'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Corpora!'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, [chr(0xea)], 'Corporation!'.ljust(21))
+        _(0, self.half_quarter_beat_time, 1, ['.', '.', '.'], 'Corporation!'.ljust(21))
+        _(0, self.quarter_beat_time, 1, ['.', '.', '.'], 'Cor!'.ljust(21))
+        _(0, self.quarter_beat_time, 1, [chr(0xf7)], 'Cor! (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xea)], 'Cor'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.half_quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Cor (x2)'.ljust(21))
+        _(2, self.quarter_beat_time, 0, [chr(0xf1)], 'Cor (x3)'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Corpo'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Corpora'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corporation'.ljust(21))
+        _(0, self.quarter_beat_time, 0, ['.', '.', '.'], 'Cor'.ljust(21))
+        _(0, self.quarter_beat_time, 0, [chr(0xf7)], 'Cor (x2)'.ljust(21))
+
         for i in range(4):
-            _(2, self.quarter_beat_time, 0, '.',{chr(0xf7)},'.', 'Cor'.ljust(21))
-            _(0, self.quarter_beat_time, 0, '..',{chr(0xf7)}, 'Corpo'.ljust(21))
-            _(0, self.quarter_beat_time, 0, {chr(0xea)}, 'Corpora'.ljust(21))
+            _(2, self.quarter_beat_time, 0, ['.', chr(0xf1), '.'], 'Cor'.ljust(21))
+            _(0, self.quarter_beat_time, 0, ['.', '.', chr(0xf7)], 'Corpo'.ljust(21))
+            _(0, self.quarter_beat_time, 0, [chr(0xea)], 'Corpora'.ljust(21))
+
+
         self.output(f'Credits{self.backslash_enter*13}{chr(0xaf)} {"Corporat".ljust(21)}Frums', self.half_quarter_beat_time)
         self.output(f'Credits{self.backslash_enter*13}{chr(0xaf)} {"Corporati".ljust(21)}Frums', self.half_quarter_beat_time)
         self.output(f'Credits{self.backslash_enter*13}{chr(0xaf)} {"Corporatio".ljust(21)}Frums', self.half_quarter_beat_time)
         self.output(f'Credits{self.backslash_enter*13}{chr(0xaf)} {"Corporation".ljust(21)}Frums', self.half_quarter_beat_time)
         self.output(f'Credits{self.backslash_enter*13}{chr(0xaf)} {"Corporation".ljust(21)}Frums', self.half_beat_time)
-
     def _6(self):
         cop = "Corporation"
         inv_cop = f"uo{chr(0x2c6)+chr(0x2021)+chr(0x2030)+chr(0x2020)}od{chr(0x2020)}o{chr(0x2026)}"
@@ -525,9 +529,9 @@ class Credits_BGA:
             s = self.light if shine == 0 else (self.median if shine == 1 else self.dark)
             r = chr(0xab) if repeat == 2 else chr(0xac) if repeat == 3 else ''
             if(type==0):
-                self.output(f'Credits{(((f"{chr(0xa6)}x{r}{chr(0xa7)} ")if repeat != 1 else "") + inv_cop[11-length:]).rjust(19)} {chr(0xae)}\n\n   {s*2}chr(0xc9){chr(0xcd)*9}chr(0xd1){chr(0xcd)*7}chr(0xbb){s*2}\n  {s*2} chr(0xba)         chr(0x7c){block[0]}chr(0xba) {s*2}\n  {s*2} chr(0xba)   {self.eighth_note*2}    chr(0x7c){block[1]}chr(0xba) {s*2}\n {s*2}  chr(0xba)  {self.eighth_note*4}   chr(0x7c){block[2]}chr(0xba)  {s*2}\n {s*2}  chr(0xba)   {self.eighth_note*2}    chr(0x7c){block[3]}chr(0xba)  {s*2}\n {s*2}  chr(0xba)  {self.eighth_note*4} {self.eighth_note} chr(0x7c){block[4]}chr(0xba)  {s*2}\n {s*2}  chr(0xba) {self.eighth_note*6}  chr(0x7c){block[5]}chr(0xba)  {s*2}\n  {s*2} chr(0xba) {self.eighth_note*5}   chr(0x7c){block[6]}chr(0xba) {s*2}\n  {s*2} chr(0xba){chr(0xdf)*9}chr(0x7c){block[7]}chr(0xba) {s*2}\n   {s*2}chr(0xc8){chr(0xcd)*9}chr(0xcf){chr(0xcd)*7}chr(0xbc){s*2}\n\nchr(0xaf) {(cop[:length]+((f" ({repeat}x)")if repeat != 1 else "")).ljust(21)}Frums', wait_time)
+                self.output(f'Credits{(((f"{chr(0xa6)}x{r}{chr(0xa7)} ")if repeat != 1 else "") + inv_cop[11-length:]).rjust(19)} {chr(0xae)}\n\n   {s*2}{chr(0xc9)}{chr(0xcd)*9}{chr(0xd1)}{chr(0xcd)*7}{chr(0xbb)}{s*2}\n  {s*2} {chr(0xba)}         {chr(0x7c)}{block[0]}{chr(0xba)} {s*2}\n  {s*2} {chr(0xba)}   {self.eighth_note*2}    {chr(0x7c)}{block[1]}{chr(0xba)} {s*2}\n {s*2}  {chr(0xba)}  {self.eighth_note*4}   {chr(0x7c)}{block[2]}{chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)}   {self.eighth_note*2}    {chr(0x7c)}{block[3]}{chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)}  {self.eighth_note*4} {self.eighth_note} {chr(0x7c)}{block[4]}{chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)} {self.eighth_note*6}  {chr(0x7c)}{block[5]}{chr(0xba)}  {s*2}\n  {s*2} {chr(0xba)} {self.eighth_note*5}   {chr(0x7c)}{block[6]}{chr(0xba)} {s*2}\n  {s*2} {chr(0xba)}{chr(0xdf)*9}{chr(0x7c)}{block[7]}{chr(0xba)} {s*2}\n   {s*2}{chr(0xc8)}{chr(0xcd)*9}{chr(0xcf)}{chr(0xcd)*7}{chr(0xbc)}{s*2}\n\n{chr(0xaf)} {(cop[:length]+((f" ({repeat}x)")if repeat != 1 else "")).ljust(21)}Frums', wait_time)
             elif(type == 1):   
-                self.output(f'Credits{(((f"{chr(0xa6)}x{r}{chr(0xa7)} ")if repeat != 1 else "") + inv_cop[11-length:]).rjust(19)} chr(0xae)\n\n   {s*2}chr(0xc9){chr(0xcd)*7}chr(0xd1){chr(0xcd)*9}chr(0xbb){s*2}\n  {s*2} chr(0xba){block[0]}chr(0x7c)         chr(0xba) {s*2}\n  {s*2} chr(0xba){block[1]}chr(0x7c)    {self.sixteenth_note*2}   chr(0xba) {s*2}\n {s*2}  chr(0xba){block[2]}chr(0x7c)   {self.sixteenth_note*4}  chr(0xba)  {s*2}\n {s*2}  chr(0xba){block[3]}chr(0x7c)    {self.sixteenth_note*2}   chr(0xba)  {s*2}\n {s*2}  chr(0xba){block[4]}chr(0x7c) {self.sixteenth_note} {self.sixteenth_note*4}  chr(0xba)  {s*2}\n {s*2}  chr(0xba){block[5]}chr(0x7c)  {self.sixteenth_note*6} chr(0xba)  {s*2}\n  {s*2} chr(0xba){block[6]}chr(0x7c)   {self.sixteenth_note*5} chr(0xba) {s*2}\n  {s*2} chr(0xba){block[7]}chr(0x7c){chr(0xdf)*9}chr(0xba) {s*2}\n   {s*2}chr(0xc8){chr(0xcd)*7}chr(0xcf){chr(0xcd)*9}chr(0xbc){s*2}\n\nchr(0xaf) {(cop[:length]+((f" ({repeat}x)")if repeat != 1 else "")).ljust(21)}Frums', wait_time)
+                self.output(f'Credits{(((f"{chr(0xa6)}x{r}{chr(0xa7)} ")if repeat != 1 else "") + inv_cop[11-length:]).rjust(19)} {chr(0xae)}\n\n   {s*2}{chr(0xc9)}{chr(0xcd)*7}{chr(0xd1)}{chr(0xcd)*9}{chr(0xbb)}{s*2}\n  {s*2} {chr(0xba)}{block[0]}{chr(0x7c)}         {chr(0xba)} {s*2}\n  {s*2} {chr(0xba)}{block[1]}{chr(0x7c)}    {self.sixteenth_note*2}   {chr(0xba)} {s*2}\n {s*2}  {chr(0xba)}{block[2]}{chr(0x7c)}   {self.sixteenth_note*4}  {chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)}{block[3]}{chr(0x7c)}    {self.sixteenth_note*2}   {chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)}{block[4]}{chr(0x7c)} {self.sixteenth_note} {self.sixteenth_note*4}  {chr(0xba)}  {s*2}\n {s*2}  {chr(0xba)}{block[5]}{chr(0x7c)}  {self.sixteenth_note*6} {chr(0xba)}  {s*2}\n  {s*2} {chr(0xba)}{block[6]}{chr(0x7c)}   {self.sixteenth_note*5} {chr(0xba)} {s*2}\n  {s*2} {chr(0xba)}{block[7]}{chr(0x7c)}{chr(0xdf)*9}{chr(0xba)} {s*2}\n   {s*2}{chr(0xc8)}{chr(0xcd)*7}{chr(0xcf)}{chr(0xcd)*9}{chr(0xbc)}{s*2}\n\n{chr(0xaf)} {(cop[:length]+((f" ({repeat}x)")if repeat != 1 else "")).ljust(21)}Frums', wait_time)
 
         for i in range(4):
             _(3, 0, ['..',{chr(0xea)},{chr(0xea)},{chr(0xea)},'..', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},'.....',{chr(0xea)}, {chr(0xea)},'.....',{chr(0xea)}, '.',{chr(0xea)},'...',chr(0xea),'.', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},{chr(0xea)},'...',{chr(0xea)},{chr(0xea)}, 'K i c k'], 2, self.half_quarter_beat_time, 3 if i != 0 else 1)
@@ -539,8 +543,8 @@ class Credits_BGA:
             _(3, 0, ['..',{chr(0xea)},{chr(0xea)},{chr(0xea)},'..', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},'.....',{chr(0xea)}, {chr(0xea)},'.....',{chr(0xea)}, '.',{chr(0xea)},'...',chr(0xea),'.', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},{chr(0xea)},'...',{chr(0xea)},{chr(0xea)}, 'K i c k'], 0, self.quarter_beat_time)
             _(5, 0, ['.......' if x!=7 else 'N o n e' for x in range(8) ], 0, self.quarter_beat_time)
             _(7, 0, ['.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', 'R i d e'], 0, self.quarter_beat_time)
-            _(3, 0, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
-            _(3, 0, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
+            _(3, 0, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
+            _(3, 0, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
             _(5, 0, ['.......' if x!=7 else 'N o n e' for x in range(8) ], 0, self.quarter_beat_time)
             _(7, 0, ['.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', 'R i d e'], 0, self.quarter_beat_time)
             _(3, 0, ['..',{chr(0xea)},{chr(0xea)},{chr(0xea)},'..', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},'.....',{chr(0xea)}, {chr(0xea)},'.....',{chr(0xea)}, '.',{chr(0xea)},'...',chr(0xea),'.', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},{chr(0xea)},'...',{chr(0xea)},{chr(0xea)}, 'K i c k'], 0, self.quarter_beat_time)
@@ -559,15 +563,15 @@ class Credits_BGA:
             _(3, 0, ['..',{chr(0xea)},{chr(0xea)},{chr(0xea)},'..', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},'.....',{chr(0xea)}, {chr(0xea)},'.....',{chr(0xea)}, '.',{chr(0xea)},'...',chr(0xea),'.', '.',{chr(0xea)},'...',{chr(0xea)},'.', {chr(0xea)},{chr(0xea)},'...',{chr(0xea)},{chr(0xea)}, 'K i c k'], 0, self.quarter_beat_time)
             _(5, 1, ['.......' if x!=7 else 'N o n e' for x in range(8) ], 0, self.quarter_beat_time) #反转
             _(7, 1, ['.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', 'R i d e'], 0, self.quarter_beat_time)
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
             _(5, 1, ['.......' if x!=7 else 'N o n e' for x in range(8) ], 0, self.quarter_beat_time)
             _(7, 1, ['.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', f'.{chr(0xf7)*3}.{chr(0xf7)*2}', f'{chr(0xf7)*2}.{chr(0xf7)*3}.', '.......', 'R i d e'], 0, self.quarter_beat_time)
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time)
             if(i==3):break
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time, 2)
-            _(3, 1, ['...chr(0xf1)...' if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time, 2)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 2, self.half_quarter_beat_time, 2)
+            _(3, 1, [('..',chr(0xf1),'..') if x!=2 and x!=7 else(f'.{chr(0xf1)*5}.' if x==2 or x==6 else 'S h o t' ) for x in range(8)], 0, self.half_quarter_beat_time, 2)
 
     def _7(self):
         def ender_pearl(char:str, type:bool, wait_time:float, text:list, shine:int =0, hide:bool =0):
